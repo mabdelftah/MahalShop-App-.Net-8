@@ -25,6 +25,22 @@ namespace Infrastructure_Layer.Repository
             await _context.SaveChangesAsync();
         }
 
+        //public async Task<IReadOnlyList<T>> GetAll(Expression<Func<T, bool>> match, object[] includes = null)
+        //{
+
+        //    IQueryable<T> query = _context.Set<T>();
+        //    if (includes != null)
+        //    {
+        //        foreach (var include in includes)
+        //        {
+        //            query = query.Include((string)include);
+
+        //        }
+        //    }
+
+        //    return await query.Where(match).ToListAsync();
+        //}
+
         public async Task<IReadOnlyList<T>> GetAllAsync() =>
             await _context.Set<T>().AsNoTracking().ToListAsync();
 

@@ -10,10 +10,12 @@ builder.Services.AddControllers();
 
 
 //builder.Services.AddDbContext<ApplicationDbContext>(options =>
-//                              options.UseSqlServer(builder.Configuration.GetConnectionString("DefaulteConnection")));
+//                              options.UseSqlServer(builder.Configuration.GetConnectionString("DefaulteConnection"),
+//                              b => b.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName)));
 builder.Services.InfrastructureConfiguration(builder.Configuration);
 
 builder.Services.AddAutoMapper(typeof(MappingProfile));
+//builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

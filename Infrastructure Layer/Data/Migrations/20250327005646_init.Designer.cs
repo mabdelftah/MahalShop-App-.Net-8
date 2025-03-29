@@ -8,11 +8,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Infrastructure_Layer.Data.Migratios
+namespace Infrastructure_Layer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250327011007_SeedData")]
-    partial class SeedData
+    [Migration("20250327005646_init")]
+    partial class init
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -44,14 +44,6 @@ namespace Infrastructure_Layer.Data.Migratios
                     b.HasKey("Id");
 
                     b.ToTable("Categories");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            Description = "Test",
-                            Name = "Test"
-                        });
                 });
 
             modelBuilder.Entity("MahalShop.Core.Entities.Photo", b =>
@@ -103,16 +95,6 @@ namespace Infrastructure_Layer.Data.Migratios
                     b.HasIndex("CategoryId");
 
                     b.ToTable("Products");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            CategoryId = 1,
-                            Description = "Test",
-                            Name = "Test",
-                            Price = 12m
-                        });
                 });
 
             modelBuilder.Entity("MahalShop.Core.Entities.Photo", b =>

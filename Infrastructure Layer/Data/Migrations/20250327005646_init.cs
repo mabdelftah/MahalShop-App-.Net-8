@@ -2,7 +2,7 @@
 
 #nullable disable
 
-namespace Infrastructure_Layer.Data.Migratios
+namespace Infrastructure_Layer.Data.Migrations
 {
     /// <inheritdoc />
     public partial class init : Migration

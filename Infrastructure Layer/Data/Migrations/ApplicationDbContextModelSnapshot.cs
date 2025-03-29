@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
 
-namespace Infrastructure_Layer.Data.Migratios
+namespace Infrastructure_Layer.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
     partial class ApplicationDbContextModelSnapshot : ModelSnapshot
@@ -92,7 +92,10 @@ namespace Infrastructure_Layer.Data.Migratios
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal>("NewPrice")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("OldPrice")
                         .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
@@ -108,35 +111,29 @@ namespace Infrastructure_Layer.Data.Migratios
                             CategoryId = 1,
                             Description = "Test",
                             Name = "Test",
-                            Price = 12m
+                            NewPrice = 12m,
+                            OldPrice = 0m
                         });
                 });
 
             modelBuilder.Entity("MahalShop.Core.Entities.Photo", b =>
                 {
-                    b.HasOne("MahalShop.Core.Entities.Product", "Product")
+                    b.HasOne("MahalShop.Core.Entities.Product", null)
                         .WithMany("Photos")
                         .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Product");
                 });
 
             modelBuilder.Entity("MahalShop.Core.Entities.Product", b =>
                 {
                     b.HasOne("MahalShop.Core.Entities.Category", "Category")
-                        .WithMany("Products")
+                        .WithMany()
                         .HasForeignKey("CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Category");
-                });
-
-            modelBuilder.Entity("MahalShop.Core.Entities.Category", b =>
-                {
-                    b.Navigation("Products");
                 });
 
             modelBuilder.Entity("MahalShop.Core.Entities.Product", b =>
